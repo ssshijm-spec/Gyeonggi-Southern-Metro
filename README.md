@@ -8,8 +8,16 @@
 3. **민원 접수** — 국토교통부·경기도청·국민신문고 민원 페이지 링크
 4. **커뮤니티** — 네이버 카페 / 카카오톡 오픈채팅 참여
 
+## 폴더 구조
+```
+docs/
+  ├─ index.html      # standalone 원페이지 (GitHub Pages 배포용)
+  └─ campaign.html   # Artifact 배포용 소스
+README.md
+```
+
 ## 배포 (GitHub Pages)
-저장소 **Settings → Pages → Branch: `main` / `/ (root)`** 선택 후 저장하면
+저장소 **Settings → Pages → Branch: `main` / `/docs`** 선택 후 저장하면
 `https://ssshijm-spec.github.io/Gyeonggi-Southern-Metro/` 에서 열립니다.
 
-`index.html` 하나로 동작하며 별도 빌드/의존성이 없습니다.
+`docs/index.html` 하나로 동작하며 별도 빌드/의존성이 없습니다.
