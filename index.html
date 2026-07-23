@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="경기남부광역철도의 제5차 국가철도망 구축계획 반영을 위한 청원·문자·민원·커뮤니티 온라인 행동 페이지" />
+<meta property="og:title" content="경기남부광역철도 성사 · 온라인 행동" />
+<meta property="og:description" content="제5차 국가철도망 구축계획에 경기남부광역철도가 반드시 반영되어야 합니다. 지금 함께 행동해 주세요." />
+<meta name="theme-color" content="#14263f" />
+<title>경기남부광역철도 성사 · 온라인 행동</title>
+<style>
+  :root {
+    /* palette — subway wayfinding language */
+    --ground: #eef1f6;
+    --surface: #ffffff;
+    --surface-2: #f6f8fb;
+    --ink: #14263f;
+    --ink-soft: #55647c;
+    --ink-faint: #8a97ab;
+    --rail: #1b2c48;
+    --signal: #e5342a;
+    --signal-dark: #c22518;
+    --line-blue: #2b6fd6;
+    --go: #0f7a52;
+    --amber: #f0b429;
+    --border: #dbe2ec;
+    --border-soft: #e8edf4;
+    --node-ring: #ffffff;
+    --shadow: 0 6px 22px rgba(20, 38, 63, 0.10);
+    --shadow-sm: 0 2px 8px rgba(20, 38, 63, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0b1320;
+      --surface: #131f30;
+      --surface-2: #182640;
+      --ink: #e9f0fa;
+      --ink-soft: #a2b2c8;
+      --ink-faint: #6d7f97;
+      --rail: #5a76a3;
+      --signal: #ff5646;
+      --signal-dark: #e5342a;
+      --line-blue: #5b93e6;
+      --go: #2fa579;
+      --amber: #f5c14e;
+      --border: #26344b;
+      --border-soft: #1e2b40;
+      --node-ring: #131f30;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
+                 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    line-height: 1.62;
+    letter-spacing: -0.01em;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono {
+    font-family: "SF Mono", "SFMono-Regular", ui-monospace, "Consolas", "Menlo", monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
+  .page { max-width: 640px; margin: 0 auto; }
+
+  /* ============ HERO — departure board ============ */
+  .hero {
+    background:
+      radial-gradient(120% 90% at 85% -10%, rgba(43,111,214,0.28), transparent 60%),
+      linear-gradient(168deg, #16273f 0%, #0e1a2c 100%);
+    color: #eef3fb;
+    padding: 40px 24px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, transparent 0 26px, rgba(255,255,255,0.028) 26px 27px);
+    pointer-events: none;
+  }
+  .hero h1 {
+    margin: 4px 0 0;
+    font-size: clamp(26px, 7.2vw, 34px);
+    font-weight: 800;
+    line-height: 1.28;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: #ffd45e;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+  }
+  .hero .sub {
+    margin-top: 16px;
+    font-size: 14.5px;
+    color: #b7c7dd;
+    max-width: 34em;
+  }
+  .hero .route {
+    margin-top: 20px;
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 7px;
+    font-size: 13px; font-weight: 700;
+    color: #dce7f5;
+  }
+  .hero .stop {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+    padding: 4px 11px; border-radius: 999px;
+  }
+  .hero .seg { color: rgba(255,255,255,0.4); font-size: 11px; }
+  .countdown {
+    margin-top: 22px;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(229,52,43,0.16);
+    border: 1px solid rgba(255,120,110,0.4);
+    color: #ffd0cb;
+    padding: 8px 14px; border-radius: 10px;
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.01em;
+  }
+  .countdown .pulse {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--signal);
+    box-shadow: 0 0 0 0 rgba(229,52,43,0.7);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(229,52,43,0.6); }
+    70% { box-shadow: 0 0 0 9px rgba(229,52,43,0); }
+    100% { box-shadow: 0 0 0 0 rgba(229,52,43,0); }
+  }
+
+  /* ============ WHY card ============ */
+  .why {
+    background: var(--surface);
+    margin: 16px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 22px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--signal);
+  }
+  .why h2 {
+    margin: 8px 0 12px;
+    font-size: 19px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .why p { margin: 0 0 14px; font-size: 14.5px; color: var(--ink-soft); }
+  .facts { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+  .fact {
+    display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+    padding: 13px 15px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    font-size: 13.8px; color: var(--ink);
+  }
+  .fact .k {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
+    color: #fff; background: var(--line-blue);
+    padding: 3px 8px; border-radius: 6px; white-space: nowrap;
+    align-self: center;
+  }
+  .fact.hot .k { background: var(--signal); }
+  .fact b { color: var(--ink); }
+
+  /* ============ RAIL / STATIONS ============ */
+  .rail {
+    position: relative;
+    margin: 8px 0 0;
+    padding: 6px 16px 30px;
+  }
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: 43px; top: 26px; bottom: 60px;
+    width: 4px;
+    background: linear-gradient(var(--line-blue), var(--line-blue));
+    border-radius: 4px;
+    opacity: 0.9;
+  }
+  .station { position: relative; padding-left: 54px; margin-top: 30px; }
+  .station:first-child { margin-top: 20px; }
+  .node {
+    position: absolute; left: 12px; top: 2px;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface);
+    border: 4px solid var(--line-blue);
+    box-shadow: 0 0 0 4px var(--node-ring);
+    display: grid; place-items: center;
+    font-size: 12.5px; font-weight: 800; color: var(--ink);
+    z-index: 2;
+  }
+  .station.final .node { border-color: var(--signal); }
+  .st-head { margin-bottom: 12px; }
+  .st-head h3 {
+    margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .st-head .st-desc { font-size: 12.5px; color: var(--ink-faint); margin-top: 2px; }
+
+  /* ============ Buttons / links ============ */
+  .link-row {
+    display: flex; align-items: center; gap: 13px;
+    width: 100%; text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 15px 16px;
+    text-decoration: none; color: var(--ink);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform .12s ease, border-color .12s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .link-row:active { transform: scale(0.985); }
+  .link-row:hover { border-color: var(--line-blue); }
+  .link-row .ic {
+    width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px;
+    display: grid; place-items: center;
+    background: var(--surface-2); color: var(--line-blue);
+  }
+  .link-row .ic svg { width: 21px; height: 21px; }
+  .link-row .body { flex: 1; min-width: 0; }
+  .link-row .body .t { font-weight: 700; font-size: 15px; }
+  .link-row .body .s { font-size: 12px; color: var(--ink-faint); margin-top: 1px; }
+  .link-row .go { color: var(--ink-faint); flex-shrink: 0; }
+
+  .cta-petition {
+    background: linear-gradient(135deg, var(--signal) 0%, var(--signal-dark) 100%);
+    border: none; color: #fff;
+  }
+  .cta-petition .ic { background: rgba(255,255,255,0.18); color: #fff; }
+  .cta-petition .body .s { color: rgba(255,255,255,0.85); }
+  .cta-petition .go { color: rgba(255,255,255,0.9); }
+  .cta-petition:hover { border-color: transparent; }
+
+  .stack { display: grid; gap: 10px; }
+
+  /* ============ Message composer ============ */
+  .composer {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 15px 15px 16px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 12px;
+  }
+  .composer .clabel {
+    font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 10px;
+  }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 11px; }
+  .tab {
+    flex: 1 1 0; min-width: 52px; padding: 8px 2px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-soft);
+    border-radius: 9px; font-size: 12.5px; font-weight: 700;
+    cursor: pointer; transition: all .12s;
+    font-family: inherit; white-space: nowrap;
+  }
+  .tab-custom { flex: 1 1 100%; }
+  .tab.on { background: var(--rail); color: #fff; border-color: var(--rail); }
+  .tab-custom.on { background: var(--signal); border-color: var(--signal); }
+  .preview {
+    font-size: 13.5px; color: var(--ink); line-height: 1.66;
+    background: var(--surface-2);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--line-blue);
+    border-radius: 8px; padding: 13px 14px;
+  }
+  .custom-area {
+    display: none;
+    width: 100%; min-height: 130px; resize: vertical;
+    font-family: inherit; font-size: 13.5px; line-height: 1.66; color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--signal);
+    border-radius: 8px; padding: 13px 14px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .custom-area:focus { outline: none; border-color: var(--signal); }
+  .composer.custom-mode .preview { display: none; }
+  .composer.custom-mode .custom-area { display: block; }
+
+  /* recipient dropdown */
+  .recipient { margin-bottom: 12px; }
+  .select-wrap { position: relative; }
+  .select-wrap .chev {
+    position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+    pointer-events: none; color: var(--ink-faint); font-size: 15px;
+  }
+  #personSelect {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 38px 13px 14px;
+    cursor: pointer;
+  }
+  #personSelect:focus { outline: none; border-color: var(--line-blue); }
+  .send-one {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 10px; text-decoration: none;
+    background: var(--signal); color: #fff; border-color: var(--signal);
+  }
+  .send-one:active { background: var(--signal-dark); }
+  .send-one svg { width: 17px; height: 17px; }
+  .copy-btn {
+    margin-top: 10px; width: 100%;
+    padding: 11px; border-radius: 9px;
+    border: 1px solid var(--line-blue);
+    background: transparent; color: var(--line-blue);
+    font-weight: 700; font-size: 13.5px; cursor: pointer;
+    font-family: inherit;
+    transition: background .12s;
+  }
+  .copy-btn:active { background: var(--surface-2); }
+
+  .send-all {
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    width: 100%;
+    background: linear-gradient(135deg, var(--go) 0%, #0a6047 100%);
+    color: #fff; border: none; border-radius: 13px;
+    padding: 15px; font-size: 15px; font-weight: 800;
+    text-decoration: none; cursor: pointer;
+    box-shadow: var(--shadow-sm); margin-bottom: 12px;
+    font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .send-all:active { transform: scale(0.985); }
+  .send-all svg { width: 19px; height: 19px; }
+
+  .hint {
+    display: none;
+    background: color-mix(in srgb, var(--amber) 16%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--amber) 45%, var(--surface));
+    color: var(--ink);
+    font-size: 12.5px; border-radius: 10px; padding: 11px 13px; margin-bottom: 12px;
+  }
+  .hint b { color: var(--ink); }
+
+  .note {
+    font-size: 12px; color: var(--ink-faint); margin: 12px 4px 0;
+    line-height: 1.6;
+  }
+
+  /* community */
+  .community {
+    margin: 20px 16px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px 20px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .comm-title {
+    margin: 8px 0 16px;
+    font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: var(--ink);
+  }
+  .comm-cafe .ic { background: color-mix(in srgb, var(--go) 15%, var(--surface)); color: var(--go); }
+  .comm-cafe:hover { border-color: var(--go); }
+  .comm-kakao .ic { background: color-mix(in srgb, var(--amber) 22%, var(--surface)); color: #7a5a00; }
+  .comm-kakao:hover { border-color: var(--amber); }
+  @media (prefers-color-scheme: dark) { .comm-kakao .ic { color: var(--amber); } }
+
+  /* footer */
+  footer {
+    text-align: center; padding: 28px 20px 44px;
+    color: var(--ink-faint); font-size: 12px; line-height: 1.7;
+    border-top: 1px solid var(--border-soft); margin-top: 12px;
+  }
+
+  /* toast */
+  .toast {
+    position: fixed; left: 50%; bottom: 28px;
+    transform: translateX(-50%) translateY(16px);
+    background: var(--rail); color: #fff;
+    padding: 12px 22px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 700;
+    opacity: 0; pointer-events: none;
+    transition: opacity .22s, transform .22s;
+    z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  :focus-visible { outline: 3px solid var(--line-blue); outline-offset: 2px; border-radius: 6px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- HERO -->
+  <header class="hero">
+    <h1>제5차 국가철도망 구축계획에<br><em>경기남부광역철도</em>가<br>반드시 반영되어야 합니다!</h1>
+    <p class="sub">성남·용인·수원·화성을 잇는 경기 남부 최우선 상생 노선. 수백만 주민의 숙원을 지금 함께 밀어주세요.</p>
+    <div class="route">
+      <span class="stop">서울</span><span class="seg">━</span>
+      <span class="stop">성남</span><span class="seg">━</span>
+      <span class="stop">용인</span><span class="seg">━</span>
+      <span class="stop">수원</span><span class="seg">━</span>
+      <span class="stop">화성</span>
+    </div>
+    <div class="countdown">
+      <span class="pulse"></span>제5차 국가철도망 구축계획 발표 임박 — 지금이 골든타임
+    </div>
+  </header>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="eyebrow">왜 지금인가</div>
+    <h2>클릭 한 번이 노선을 살립니다</h2>
+    <p>경기남부광역철도는 성남·용인·수원·화성을 하나로 잇는 경기 남부의 오랜 숙원입니다. 수백만 주민이 매일 극심한 정체 속에 출퇴근 고통을 겪습니다. 지금 <b>제5차 국가철도망 구축계획</b> 신규 사업 반영 여부가 결정됩니다.</p>
+    <ul class="facts">
+      <li class="fact"><span class="k">교통</span><span><b>교통 고립 해소</b> — 경기 남부 교통난을 풀 사실상 유일한 해법</span></li>
+      <li class="fact"><span class="k">상생</span><span><b>초광역 상생</b> — 4개 도시를 잇는 협력 노선으로 함께 성장</span></li>
+      <li class="fact hot"><span class="k">시급</span><span><b>골든타임</b> — 발표가 임박한 지금, 여론이 결과를 가릅니다</span></li>
+    </ul>
+  </section>
+
+  <!-- RAIL: 3 stations -->
+  <div class="rail">
+
+    <!-- Station 1 -->
+    <section class="station">
+      <div class="node">1</div>
+      <div class="st-head">
+        <h3>경기도 청원 동의</h3>
+        <div class="st-desc">카카오·네이버로 각각 1회씩, 총 2회 동의 가능</div>
+      </div>
+      <a class="link-row cta-petition" href="https://petitions.gg.go.kr/view/?uid=28039&bs=3" target="_blank" rel="noopener">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </span>
+        <span class="body">
+          <span class="t">청원 동의하러 가기</span>
+          <span class="s">경기도 청원 페이지로 이동합니다</span>
+        </span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </section>
+
+    <!-- Station 2 -->
+    <section class="station">
+      <div class="node">2</div>
+      <div class="st-head">
+        <h3>정치인에게 민원 문자</h3>
+        <div class="st-desc">문구를 고르고 정치인을 선택한 뒤 버튼을 누르면 문자앱이 열립니다</div>
+      </div>
+
+      <div class="hint" id="hint">
+        💻 문자 자동작성은 <b>휴대폰</b>에서 동작합니다. PC에서는 버튼을 누르면 <b>번호 + 문구가 복사</b>되니 직접 보내주세요.
+      </div>
+
+      <!-- composer -->
+      <div class="composer">
+        <div class="clabel">보낼 민원 문구 선택</div>
+        <div class="tabs" id="tabs" role="tablist">
+          <button class="tab on" data-i="0" role="tab">문구 1</button>
+          <button class="tab" data-i="1" role="tab">문구 2</button>
+          <button class="tab" data-i="2" role="tab">문구 3</button>
+          <button class="tab" data-i="3" role="tab">문구 4</button>
+          <button class="tab tab-custom" data-i="custom" role="tab">✏️ 직접 작성</button>
+        </div>
+        <div class="preview" id="preview"></div>
+        <textarea class="custom-area" id="customArea" placeholder="보낼 민원 내용을 직접 작성하세요."></textarea>
+        <button class="copy-btn" id="copyMsg" type="button">📋 이 문구 복사하기</button>
+      </div>
+
+      <!-- recipient dropdown -->
+      <div class="composer recipient">
+        <div class="clabel">받는 정치인 선택</div>
+        <div class="select-wrap">
+          <select id="personSelect" aria-label="정치인 선택"></select>
+          <span class="chev" aria-hidden="true">▾</span>
+        </div>
+        <a class="copy-btn send-one" id="sendOne" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          선택한 정치인에게 문자 보내기
+        </a>
+      </div>
+
+      <a class="send-all" id="sendAll" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        전체 정치인에게 한 번에 보내기
+      </a>
+    </section>
+
+    <!-- Station 3 -->
+    <section class="station final">
+      <div class="node">3</div>
+      <div class="st-head">
+        <h3>민원 접수하기</h3>
+        <div class="st-desc">국토부·경기도청·국민신문고에 목소리를 남겨주세요</div>
+      </div>
+
+      <div class="stack">
+        <a class="link-row" href="https://www.molit.go.kr/USR/BORD0201/m_69/BRD.jsp?mode=list" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">🏛️</span>
+          <span class="body"><span class="t">국토교통부 민원</span><span class="s mono">molit.go.kr · 국가철도망 소관 부처</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="link-row" href="https://www.gg.go.kr/civilservice-main" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">🏢</span>
+          <span class="body"><span class="t">경기도청 민원</span><span class="s mono">gg.go.kr · 경기도 도민 민원</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="link-row" href="https://www.epeople.go.kr/nep/pttn/gnrlPttn/pttnRegist.npaid" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">📬</span>
+          <span class="body"><span class="t">국민신문고 민원</span><span class="s mono">epeople.go.kr · 온라인 민원 신청</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <p class="note">💡 위 <b>문구 복사</b> 버튼으로 내용을 복사한 뒤, 각 사이트 민원 내용란에 붙여넣어 제출하세요.</p>
+    </section>
+
+  </div>
+
+  <!-- COMMUNITY -->
+  <section class="community">
+    <div class="eyebrow">함께 모이기</div>
+    <h2 class="comm-title">주민들과 함께 힘을 모아요</h2>
+    <div class="stack">
+      <a class="link-row comm-cafe" href="https://cafe.naver.com/gsmhumans" target="_blank" rel="noopener">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="body"><span class="t">네이버 카페 가입하기</span><span class="s mono">cafe.naver.com/gsmhumans</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+      <a class="link-row comm-kakao" href="https://open.kakao.com/o/gIPAovEi" target="_blank" rel="noopener">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg>
+        </span>
+        <span class="body"><span class="t">카카오톡 오픈채팅 참여</span><span class="s mono">실시간 소식·행동 공유방</span></span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    경기 남부 주민들의 자발적 온라인 행동입니다.<br>
+    함께 힘을 모아주셔서 감사합니다. 🚆
+  </footer>
+</div>
+
+<div class="toast" id="toast">복사되었습니다</div>
+
+<script>
+  const MESSAGES = [
+    "제5차 국가철도망 구축계획 발표를 앞두고 경기남부광역철도 성사를 바라는 주민들의 간절함이 극에 달해 있습니다. 수도권 교통난 해소와 경기 남부 상생을 위해 본 노선이 국가 계획에 반드시 최종 반영될 수 있도록 사활을 걸어주십시오. 정치권의 강력한 실행력을 기대하며 주민들이 늘 주시하고 응원하겠습니다.",
+    "경기 남부 수백만 주민들이 매일 지독한 교통 정체로 출퇴근 고통을 겪고 있습니다. 경기남부광역철도 유치는 경기 남부 교통 고립을 해결할 유일한 해법이자 가장 시급한 숙원 사업입니다. 국토부 및 기재부 설득에 최선봉이 되어 본 사업을 반드시 성사시켜 주십시오. 강력한 추진력을 주민들의 표심과 마음을 담아 지지하겠습니다!",
+    "경기남부광역철도는 성남·용인·수원·화성을 잇는 경기 남부 최우선 상생 노선입니다. 지자체 간 연대를 넘어 정치권이 하나로 뭉쳐 제5차 국가철도망 구축계획에 본 사업을 최종 확정지어 주십시오. 예산과 타당성을 이유로 미루지 않도록 정치권의 초당적 협력과 강력한 대응을 간곡히 부탁드립니다.",
+    "경기남부광역철도 발표가 임박한 지금이 골든타임입니다. 매일 반복되는 교통 지옥을 견디고 있는 경기 남부 주민들은 경기남부광역철도의 국가 계획 반영 여부를 정치권과 지자체의 존재 이유로 평가할 것입니다. 제5차 국가철도망 구축계획 신규 사업 반영을 위해 끝까지 싸워주십시오. 주민들이 함께하고 성원하겠습니다."
+  ];
+
+  const PEOPLE = [
+    { name: "성남시장", role: "바로문자", phone: "01059200184" },
+    { name: "김태년 의원", role: "수정구", phone: "01086202050" },
+    { name: "강경훈", role: "김태년 지역보좌관", phone: "01062061053" },
+    { name: "이세미 시의원", role: "운중·판교·대장", phone: "01081901440" },
+    { name: "강상태 시의원", role: "고등동", phone: "01084612100" },
+    { name: "문승호 도의원", role: "도의원", phone: "01064303323" },
+    { name: "안철수 의원", role: "국회의원", phone: "01067716011" },
+    { name: "안철수 운영팀장", role: "운영팀장", phone: "01091912997" },
+    { name: "김종환 시의원", role: "운중·판교·대장", phone: "01086778831" },
+    { name: "김진명 도의원", role: "도의원", phone: "01062482996" },
+    { name: "부승찬 의원", role: "용인", phone: "01098398000" },
+    { name: "이언주 의원", role: "용인", phone: "01082075257" },
+    { name: "이상식 의원", role: "용인", phone: "01052869806" },
+    { name: "김승원 의원", role: "수원", phone: "01052664624" },
+    { name: "염태영 의원", role: "수원", phone: "01054010630" },
+    { name: "안광환 시의원", role: "고등동", phone: "01037662009" },
+    { name: "이군수 시의원", role: "고등동", phone: "01022884224" }
+  ];
+
+  let mode = 0; // 0..3 = 예시 문구, "custom" = 직접 작성
+
+  const ua = navigator.userAgent || "";
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  function smsLink(number, body) {
+    const sep = isIOS ? "&" : "?";
+    return "sms:" + number + sep + "body=" + encodeURIComponent(body);
+  }
+  function fmtPhone(p) { return p.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3"); }
+
+  const preview = document.getElementById("preview");
+  const customArea = document.getElementById("customArea");
+  const composerEl = customArea.closest(".composer");
+  const personSelect = document.getElementById("personSelect");
+  const sendOne = document.getElementById("sendOne");
+  const sendAll = document.getElementById("sendAll");
+
+  const ALL_NUMBERS = PEOPLE.map(p => p.phone).join(",");
+
+  // Populate recipient dropdown
+  PEOPLE.forEach((p) => {
+    const opt = document.createElement("option");
+    opt.value = p.phone;
+    opt.textContent = p.name + (p.role ? " · " + p.role : "") + " (" + fmtPhone(p.phone) + ")";
+    personSelect.appendChild(opt);
+  });
+
+  function getMessage() {
+    return mode === "custom" ? customArea.value.trim() : MESSAGES[mode];
+  }
+
+  function updateLinks() {
+    const body = getMessage();
+    sendOne.href = smsLink(personSelect.value, body);
+    sendAll.href = smsLink(ALL_NUMBERS, body);
+  }
+
+  function renderMsg() {
+    if (mode === "custom") {
+      composerEl.classList.add("custom-mode");
+    } else {
+      composerEl.classList.remove("custom-mode");
+      preview.textContent = MESSAGES[mode];
+    }
+    updateLinks();
+  }
+
+  document.getElementById("tabs").addEventListener("click", (e) => {
+    const btn = e.target.closest(".tab");
+    if (!btn) return;
+    mode = btn.dataset.i === "custom" ? "custom" : parseInt(btn.dataset.i, 10);
+    document.querySelectorAll(".tab").forEach(t => {
+      t.classList.remove("on"); t.setAttribute("aria-selected", "false");
+    });
+    btn.classList.add("on"); btn.setAttribute("aria-selected", "true");
+    renderMsg();
+    if (mode === "custom") customArea.focus();
+  });
+
+  customArea.addEventListener("input", updateLinks);
+  personSelect.addEventListener("change", updateLinks);
+
+  // Desktop: no SMS app — clicking a send button copies "번호 + 문구" instead.
+  if (!isMobile) {
+    document.getElementById("hint").style.display = "block";
+    const handler = (e) => {
+      e.preventDefault();
+      const msg = getMessage();
+      if (!msg) { showToast("먼저 문구를 작성하세요"); return; }
+      const num = e.currentTarget.id === "sendAll" ? ALL_NUMBERS : personSelect.value;
+      copyText(num + "\n\n" + msg, "번호와 문구를 복사했습니다");
+    };
+    sendOne.addEventListener("click", handler);
+    sendAll.addEventListener("click", handler);
+  }
+
+  // Mobile: block sending an empty custom message.
+  [sendOne, sendAll].forEach(el => {
+    el.addEventListener("click", (e) => {
+      if (isMobile && !getMessage()) { e.preventDefault(); showToast("먼저 문구를 작성하세요"); }
+    });
+  });
+
+  const toast = document.getElementById("toast");
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1900);
+  }
+  function copyText(text, msg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => showToast(msg)).catch(() => fallbackCopy(text, msg));
+    } else { fallbackCopy(text, msg); }
+  }
+  function fallbackCopy(text, msg) {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); showToast(msg); }
+    catch (e) { showToast("복사에 실패했습니다"); }
+    document.body.removeChild(ta);
+  }
+  document.getElementById("copyMsg").addEventListener("click", () => {
+    const msg = getMessage();
+    if (!msg) { showToast("먼저 문구를 작성하세요"); return; }
+    copyText(msg, "문구를 복사했습니다");
+  });
+
+  renderMsg();
+</script>
+</body>
+</html>

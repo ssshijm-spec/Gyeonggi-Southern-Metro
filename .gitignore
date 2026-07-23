@@ -1,0 +1,8 @@
+# This repo hosts only the 경기남부광역철도 web app.
+# Ignore unrelated files that happen to live in the same working directory.
+/analysis/
+/ladder-app/
+/nest-glass/
+/roulette-app/
+/S-Core_Dream_OTF/
+*.apk
