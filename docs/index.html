@@ -272,6 +272,67 @@
 
   .stack { display: grid; gap: 10px; }
 
+  /* ============ Signature campaign (10만 서명운동) ============ */
+  .sign-cta {
+    display: flex; flex-direction: column; gap: 8px;
+    text-decoration: none; color: #fff;
+    background: linear-gradient(140deg, #e5342a 0%, #b31d12 100%);
+    border-radius: 18px;
+    padding: 22px 20px;
+    box-shadow: 0 10px 30px rgba(229,52,43,0.35);
+    position: relative; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .sign-cta::after {
+    content: "✍️"; position: absolute; right: 12px; bottom: -12px;
+    font-size: 74px; opacity: 0.14; pointer-events: none;
+  }
+  .sign-cta:active { transform: scale(0.985); }
+  .sign-cta:hover { box-shadow: 0 12px 34px rgba(229,52,43,0.45); }
+  .sign-cta-eyebrow {
+    font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
+    color: #ffe1dd;
+  }
+  .sign-cta-title {
+    font-size: clamp(19px, 5.6vw, 23px); font-weight: 800;
+    line-height: 1.32; letter-spacing: -0.02em; text-wrap: balance;
+    position: relative; z-index: 1;
+  }
+  .sign-cta-go {
+    margin-top: 4px; font-size: 13.5px; font-weight: 700; color: #fff;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28);
+    align-self: flex-start; padding: 7px 14px; border-radius: 999px;
+  }
+
+  .sign-note {
+    margin: 10px 2px 0; font-size: 12.5px; color: var(--ink-faint);
+    display: flex; gap: 6px; align-items: flex-start; line-height: 1.5;
+  }
+  .sign-info { margin-top: 12px; display: grid; gap: 10px; }
+  .blog-row .ic { background: color-mix(in srgb, var(--go) 16%, var(--surface)); color: var(--go); }
+  .blog-row:hover { border-color: var(--go); }
+  .sign-desc {
+    font-size: 13.5px; line-height: 1.72; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 15px 16px;
+    box-shadow: var(--shadow-sm);
+  }
+  .sign-desc.clamped {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4;
+    overflow: hidden; cursor: pointer;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+            mask-image: linear-gradient(180deg, #000 55%, transparent);
+  }
+  .more-btn {
+    justify-self: center; margin-top: -2px;
+    border: 1px solid var(--border); background: var(--surface);
+    color: var(--line-blue); font-weight: 700; font-size: 13px;
+    font-family: inherit; padding: 8px 18px; border-radius: 999px; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .more-btn:active { transform: scale(0.96); }
+
   /* ============ Message composer ============ */
   .composer {
     background: var(--surface);
@@ -461,12 +522,47 @@
     </ul>
   </section>
 
-  <!-- RAIL: 2 stations -->
+  <!-- RAIL: 3 stations -->
   <div class="rail">
 
-    <!-- Station 1 -->
+    <!-- Station 1: 10만 서명운동 -->
     <section class="station">
       <div class="node">1</div>
+      <div class="st-head">
+        <h3>경기남부광역철도 제5차 국가철도망 반영 서명운동 참여</h3>
+        <div class="st-desc">국회의원 용인시(병) 부승찬 의원, 경기남부광역철도 제5차 국가철도망 반영 10만 서명운동</div>
+      </div>
+
+      <a class="sign-cta" href="https://forms.gle/Nbh5MwVd3MFRBZVJ9" target="_blank" rel="noopener">
+        <span class="sign-cta-eyebrow">✍️ 지금 서명하기</span>
+        <span class="sign-cta-title">경기남부광역철도 제5차 국가철도망 구축계획 반영 10만 서명운동</span>
+        <span class="sign-cta-go">서명 링크 바로가기 →</span>
+      </a>
+
+      <p class="sign-note">ℹ️ 신분당선 관련 설문에 대한 답변은 선택 사항입니다.</p>
+
+      <div class="sign-info">
+        <a class="link-row blog-row" href="https://blog.naver.com/booseungchan/224356776892" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">📖</span>
+          <span class="body"><span class="t">부승찬 의원 블로그 보기</span><span class="s mono">blog.naver.com/booseungchan</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+
+        <div class="sign-desc clamped" id="signDesc" role="button" tabindex="0" aria-expanded="false">
+          국회의원 용인시(병) 부승찬 의원<br><br>
+          경기남부광역철도 제5차 국가철도망 구축계획 반영, 및 신분당선 요금 인하를 촉구하는 “10만 서명운동”을 시작합니다!<br><br>
+          경기남부광역철도 신설과 신분당선 요금 인하는 수지 주민들의 오랜 숙원입니다. 주민들의 교통불편을 해소하고, 수지를 경기 남부권 교통의 요지로 탈바꿈시킬 핵심 과제입니다.<br><br>
+          제22대 국회 후반기 국토교통위원회에서 활동합니다!<br><br>
+          김윤덕 국토교통부 장관과 철도국장, 박홍근 기획예산처 장관을 만나 경기남부광역철도의 제5차 국가철도망 구축계획 반영과 신분당선 요금 인하를 지속적으로 촉구해 왔습니다. 앞으로도 가능한 모든 방법을 찾아 끝까지 뛰겠습니다.<br><br>
+          10만명 서명운동 목표 달성을 위해, 수지구민과 용인시민 나아가 경기도민 여러분의 뜨거운 관심과 지지가 필요합니다!
+        </div>
+        <button class="more-btn" id="signMoreBtn" type="button">전체 내용 보기 ▾</button>
+      </div>
+    </section>
+
+    <!-- Station 2: 정치인 민원 문자 -->
+    <section class="station">
+      <div class="node">2</div>
       <div class="st-head">
         <h3>정치인에게 민원 문자</h3>
         <div class="st-desc">문구를 고르고 정치인을 선택한 뒤 버튼을 누르면 문자앱이 열립니다</div>
@@ -510,9 +606,9 @@
       </a>
     </section>
 
-    <!-- Station 2 -->
+    <!-- Station 3: 민원 접수 -->
     <section class="station final">
-      <div class="node">2</div>
+      <div class="node">3</div>
       <div class="st-head">
         <h3>민원 접수하기</h3>
         <div class="st-desc">각 부처 민원 페이지로 이동해, 바로 아래 문구를 복사해 제출하세요</div>
@@ -762,6 +858,24 @@
       copyText(MINWON[parseInt(btn.dataset.mw, 10)], "문구를 복사했습니다");
     });
   });
+
+  // ===== 서명운동 내용 더보기/접기 =====
+  const signDesc = document.getElementById("signDesc");
+  const signMoreBtn = document.getElementById("signMoreBtn");
+  function toggleSign() {
+    const clamped = signDesc.classList.toggle("clamped");
+    signDesc.setAttribute("aria-expanded", String(!clamped));
+    signMoreBtn.textContent = clamped ? "전체 내용 보기 ▾" : "접기 ▴";
+  }
+  if (signDesc && signMoreBtn) {
+    signMoreBtn.addEventListener("click", toggleSign);
+    signDesc.addEventListener("click", () => {
+      if (signDesc.classList.contains("clamped")) toggleSign();
+    });
+    signDesc.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleSign(); }
+    });
+  }
 
   renderMsg();
 </script>
