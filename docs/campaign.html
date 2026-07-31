@@ -285,11 +285,16 @@
   .relay-insta:hover { border-color: #e1306c; }
   .relay-cafe .ic { background: color-mix(in srgb, var(--go) 16%, var(--surface)); color: var(--go); }
   .relay-cafe:hover { border-color: var(--go); }
-  .relay-example { margin: 13px 0 0; }
-  .relay-example .relay-img { margin-bottom: 0; }
-  .relay-example figcaption {
-    margin-top: 8px; font-size: 12px; color: var(--ink-faint); text-align: center;
+  .relay-kakao .ic { background: color-mix(in srgb, var(--amber) 20%, var(--surface)); color: var(--amber); }
+  .relay-kakao:hover { border-color: var(--amber); }
+  :root[data-theme="light"] .relay-kakao .ic { color: #7a5a00; }
+  .relay-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
+  .relay-shot { margin: 0; }
+  .relay-shot img {
+    display: block; width: 100%; aspect-ratio: 1135 / 1080; object-fit: cover;
+    border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
   }
+  .relay-cap { margin: 8px 2px 0; font-size: 12px; color: var(--ink-faint); text-align: center; }
 
   /* ============ Signature campaign (10만 서명운동) ============ */
   .sign-cta {
@@ -596,12 +601,18 @@
           <span class="body"><span class="t">네이버 공식 카페</span><span class="s mono">성남시민경남광추진</span></span>
           <span class="go" aria-hidden="true">→</span>
         </a>
+        <a class="link-row relay-kakao" href="https://open.kakao.com/o/gIPAovEi" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">💬</span>
+          <span class="body"><span class="t">성남시민 경남광 추진연대 카톡 오픈채팅</span><span class="s mono">인증 사진 공유·소식방</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
       </div>
 
-      <figure class="relay-example">
-        <img class="relay-img" src="relay2.jpg" alt="시민 희망 릴레이 인증 예시 사진" loading="lazy" />
-        <figcaption>📸 인증 예시 — 이렇게 참여해 주세요</figcaption>
-      </figure>
+      <div class="relay-examples">
+        <figure class="relay-shot"><img src="relay2.jpg" alt="시민 희망 릴레이 인증 예시 1" loading="lazy" /></figure>
+        <figure class="relay-shot"><img src="relay3.png" alt="시민 희망 릴레이 인증 예시 2" loading="lazy" /></figure>
+      </div>
+      <p class="relay-cap">📸 인증 예시 — 이렇게 참여해 주세요</p>
     </section>
 
     <!-- Station 2: 10만 서명운동 -->
