@@ -272,6 +272,20 @@
 
   .stack { display: grid; gap: 10px; }
 
+  /* ============ Relay (시민 희망 릴레이) ============ */
+  .relay-img {
+    display: block; width: 100%; height: auto;
+    border-radius: 14px; border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm); margin-bottom: 13px;
+  }
+  .relay-desc {
+    margin: 0 2px 13px; font-size: 13.8px; line-height: 1.72; color: var(--ink-soft);
+  }
+  .relay-insta .ic { background: color-mix(in srgb, #e1306c 16%, var(--surface)); color: #e1306c; }
+  .relay-insta:hover { border-color: #e1306c; }
+  .relay-cafe .ic { background: color-mix(in srgb, var(--go) 16%, var(--surface)); color: var(--go); }
+  .relay-cafe:hover { border-color: var(--go); }
+
   /* ============ Signature campaign (10만 서명운동) ============ */
   .sign-cta {
     display: flex; flex-direction: column; gap: 8px;
@@ -548,12 +562,41 @@
     </ul>
   </section>
 
-  <!-- RAIL: 3 stations -->
+  <!-- RAIL: 4 stations -->
   <div class="rail">
 
-    <!-- Station 1: 10만 서명운동 -->
+    <!-- Station 1: 시민 희망 릴레이 -->
     <section class="station">
       <div class="node">1</div>
+      <div class="st-head">
+        <h3>경기남부광역철도 시민 희망 릴레이</h3>
+        <div class="st-desc">시민의 희망과 염원을 담은 인증 릴레이에 함께해 주세요</div>
+      </div>
+
+      <img class="relay-img" src="relay.png" alt="경기남부광역철도 시민 희망 릴레이" loading="lazy" />
+
+      <p class="relay-desc">
+        시민의 희망과 염원을 담은 인증 릴레이를 시작합니다.<br>
+        보내주신 사진은 추진연대 공식 SNS(인스타그램·네이버 카페)에 공유될 수 있으며, 추후 동영상으로 제작하여 희망트럭 전광판에 송출될 예정입니다.
+      </p>
+
+      <div class="stack">
+        <a class="link-row relay-insta" href="https://www.instagram.com/gyeonggi_southern_metro?igsh=emIwYXE0a3N1azcw&amp;utm_source=qr" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">📸</span>
+          <span class="body"><span class="t">공식 인스타그램</span><span class="s mono">@gyeonggi_southern_metro</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+        <a class="link-row relay-cafe" href="https://naver.me/IIDVbKsj" target="_blank" rel="noopener">
+          <span class="ic" aria-hidden="true">☕</span>
+          <span class="body"><span class="t">네이버 공식 카페</span><span class="s mono">성남시민경남광추진</span></span>
+          <span class="go" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Station 2: 10만 서명운동 -->
+    <section class="station">
+      <div class="node">2</div>
       <div class="st-head">
         <h3>경기남부광역철도 제5차 국가철도망 반영 서명운동 참여</h3>
         <div class="st-desc">국회의원 용인시(병) 부승찬 의원, 경기남부광역철도 제5차 국가철도망 반영 10만 서명운동</div>
@@ -586,9 +629,9 @@
       </div>
     </section>
 
-    <!-- Station 2: 정치인 민원 문자 -->
+    <!-- Station 3: 정치인 민원 문자 -->
     <section class="station">
-      <div class="node">2</div>
+      <div class="node">3</div>
       <div class="st-head">
         <h3>정치인에게 민원 문자</h3>
         <div class="st-desc">문구를 고르고 정치인을 선택한 뒤 버튼을 누르면 문자앱이 열립니다</div>
@@ -632,9 +675,9 @@
       </a>
     </section>
 
-    <!-- Station 3: 민원 접수 -->
+    <!-- Station 4: 민원 접수 -->
     <section class="station final">
-      <div class="node">3</div>
+      <div class="node">4</div>
       <div class="st-head">
         <h3>민원 접수하기</h3>
         <div class="st-desc">각 부처 민원 페이지로 이동해, 바로 아래 문구를 복사해 제출하세요</div>
