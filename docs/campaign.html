@@ -272,31 +272,59 @@
 
   .stack { display: grid; gap: 10px; }
 
-  /* ============ Relay (시민 희망 릴레이) ============ */
+  /* ============ Truck (성남 희망트럭) ============ */
   .relay-img {
     display: block; width: 100%; height: auto;
     border-radius: 14px; border: 1px solid var(--border);
     box-shadow: var(--shadow-sm); margin-bottom: 13px;
   }
-  .relay-desc {
-    margin: 0 2px 13px; font-size: 13.8px; line-height: 1.72; color: var(--ink-soft);
+  .truck-call {
+    margin: 0 0 11px;
+    background: color-mix(in srgb, var(--signal) 13%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--signal) 36%, var(--border));
+    border-radius: 13px; padding: 15px 16px; text-align: center;
+    font-size: clamp(16.5px, 4.8vw, 19px); font-weight: 800;
+    line-height: 1.45; letter-spacing: -0.02em; text-wrap: balance;
+    color: var(--ink);
   }
+  .truck-call .hl { color: var(--signal); }
+  .truck-steps {
+    list-style: none; margin: 0 2px 13px; padding: 0; display: grid; gap: 9px;
+  }
+  .truck-steps li {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px 9px;
+    font-size: 13.8px; line-height: 1.6; color: var(--ink-soft);
+  }
+  .truck-steps .tk {
+    flex-shrink: 0; font-weight: 800; font-size: 12px;
+    padding: 3px 10px; border-radius: 999px;
+    background: color-mix(in srgb, var(--line-blue) 15%, var(--surface));
+    color: var(--line-blue);
+  }
+  .truck-steps .tv { font-weight: 600; color: var(--ink); }
+  .truck-tags { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 3px; }
+  .truck-tags .tag {
+    font-size: 12px; font-weight: 700; color: var(--amber);
+    background: color-mix(in srgb, var(--amber) 12%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--amber) 34%, var(--border));
+    padding: 3px 9px; border-radius: 8px;
+  }
+  :root[data-theme="light"] .truck-tags .tag { color: #b8860b; }
+  .truck-prize {
+    margin: 0 2px 13px; padding: 11px 14px; border-radius: 12px;
+    background: color-mix(in srgb, var(--amber) 15%, var(--surface));
+    border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--border));
+    font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: center;
+  }
+  .truck-prize b { color: var(--amber); font-weight: 800; }
+  :root[data-theme="light"] .truck-prize b { color: #b8860b; }
   .relay-insta .ic { background: color-mix(in srgb, #e1306c 16%, var(--surface)); color: #e1306c; }
   .relay-insta:hover { border-color: #e1306c; }
-  .relay-cafe .ic { background: color-mix(in srgb, var(--go) 16%, var(--surface)); color: var(--go); }
-  .relay-cafe:hover { border-color: var(--go); }
   .relay-kakao .ic { background: color-mix(in srgb, var(--amber) 20%, var(--surface)); color: var(--amber); }
   .relay-kakao:hover { border-color: var(--amber); }
   :root[data-theme="light"] .relay-kakao .ic { color: #7a5a00; }
   .relay-kakao .body .s { color: var(--amber); font-weight: 700; }
   :root[data-theme="light"] .relay-kakao .body .s { color: #b8860b; }
-  .relay-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 13px; }
-  .relay-shot { margin: 0; }
-  .relay-shot img {
-    display: block; width: 100%; aspect-ratio: 1135 / 1080; object-fit: cover;
-    border-radius: 12px; border: 1px solid var(--border); box-shadow: var(--shadow-sm);
-  }
-  .relay-cap { margin: 8px 2px 0; font-size: 12px; color: var(--ink-faint); text-align: center; }
 
   /* ============ Signature campaign (10만 서명운동) ============ */
   .sign-cta {
@@ -577,30 +605,32 @@
   <!-- RAIL: 4 stations -->
   <div class="rail">
 
-    <!-- Station 1: 시민 희망 릴레이 -->
+    <!-- Station 1: 성남 희망트럭 -->
     <section class="station">
       <div class="node">1</div>
       <div class="st-head">
-        <h3>경기남부광역철도 시민 희망 릴레이</h3>
-        <div class="st-desc">시민의 희망과 염원을 담은 인증 릴레이에 함께해 주세요</div>
+        <h3>성남 희망트럭이 찾아갑니다!</h3>
+        <div class="st-desc">함께 찍고, 함께 올리고, 함께 추진해요</div>
       </div>
 
-      <img class="relay-img" src="relay.jpg" alt="경기남부광역철도 시민 희망 릴레이" loading="lazy" />
+      <img class="relay-img" src="relay4.jpg" alt="성남 희망트럭 순회 일정 및 참여 방법 안내" loading="lazy" />
 
-      <p class="relay-desc">
-        시민의 희망과 염원을 담은 인증 릴레이를 시작합니다.<br>
-        보내주신 사진은 추진연대 공식 SNS(인스타그램·네이버 카페)에 공유될 수 있으며, 추후 동영상으로 제작하여 희망트럭 전광판에 송출될 예정입니다.
-      </p>
+      <p class="truck-call">📸 희망트럭을 발견하고<br><span class="hl">촬영해 공유해 주세요!</span></p>
+
+      <ul class="truck-steps">
+        <li>
+          <span class="tk">인스타그램</span><span class="tv mono">@gyeonggi_southern_metro</span>
+          <span class="truck-tags"><span class="tag">#경기남부광역철도</span><span class="tag">#성남희망트럭</span></span>
+        </li>
+        <li><span class="tk">카카오톡 공유</span><span class="tv">성남시민 경남광 추진연대 및 각 지역과 아파트 단톡방</span></li>
+      </ul>
+
+      <p class="truck-prize">🎟️ 추첨권 획득하여 <b>당첨 확률 UP!</b></p>
 
       <div class="stack">
         <a class="link-row relay-insta" href="https://www.instagram.com/gyeonggi_southern_metro?igsh=emIwYXE0a3N1azcw&amp;utm_source=qr" target="_blank" rel="noopener">
           <span class="ic" aria-hidden="true">📸</span>
           <span class="body"><span class="t">공식 인스타그램</span><span class="s mono">@gyeonggi_southern_metro</span></span>
-          <span class="go" aria-hidden="true">→</span>
-        </a>
-        <a class="link-row relay-cafe" href="https://naver.me/IIDVbKsj" target="_blank" rel="noopener">
-          <span class="ic" aria-hidden="true">☕</span>
-          <span class="body"><span class="t">네이버 공식 카페</span><span class="s mono">성남시민경남광추진</span></span>
           <span class="go" aria-hidden="true">→</span>
         </a>
         <a class="link-row relay-kakao" href="https://open.kakao.com/o/gIPAovEi" target="_blank" rel="noopener">
@@ -609,12 +639,6 @@
           <span class="go" aria-hidden="true">→</span>
         </a>
       </div>
-
-      <div class="relay-examples">
-        <figure class="relay-shot"><img src="relay2.jpg" alt="시민 희망 릴레이 인증 예시 1" loading="lazy" /></figure>
-        <figure class="relay-shot"><img src="relay3.jpg" alt="시민 희망 릴레이 인증 예시 2" loading="lazy" /></figure>
-      </div>
-      <p class="relay-cap">📸 인증 예시 — 이렇게 참여해 주세요</p>
     </section>
 
     <!-- Station 2: 10만 서명운동 -->
