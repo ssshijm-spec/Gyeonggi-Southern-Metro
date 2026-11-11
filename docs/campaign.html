@@ -271,6 +271,71 @@
   .cta-petition:hover { border-color: transparent; }
 
   .stack { display: grid; gap: 10px; }
+  /* ============ Survey notice (국민 의견수렴 설문) ============ */
+  .survey-cta {
+    background: linear-gradient(140deg, #7b3fd1 0%, #4a1a91 100%);
+    box-shadow: 0 10px 30px rgba(110, 55, 200, 0.35);
+  }
+  .survey-cta:hover { box-shadow: 0 12px 34px rgba(110, 55, 200, 0.45); }
+  .survey-cta::after { content: "📝"; }
+  .survey-cta .sign-cta-eyebrow { color: #e6dcff; }
+  .survey-lead {
+    margin: 14px 2px 12px; font-size: 14px; line-height: 1.7;
+    color: var(--ink); font-weight: 600;
+  }
+  .survey-facts { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; }
+  .survey-facts li {
+    display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 12px 14px; font-size: 13.5px;
+    box-shadow: var(--shadow-sm);
+  }
+  .survey-facts .sk { font-size: 12.5px; font-weight: 800; color: var(--ink); white-space: nowrap; }
+  .survey-facts .sv { color: var(--ink-soft); }
+  .survey-facts .sv b { color: var(--signal); }
+  .survey-box {
+    display: grid; gap: 10px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 15px 15px 14px;
+    box-shadow: var(--shadow-sm); margin-bottom: 12px;
+  }
+  .sb-title { font-size: 14px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+  .survey-guide { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .survey-guide li {
+    display: grid; grid-template-columns: 46px 1fr; gap: 10px; align-items: center;
+    padding: 9px 12px; background: var(--surface-2);
+    border: 1px solid var(--border-soft); border-radius: 10px; font-size: 13.5px;
+  }
+  .survey-guide .q { font-weight: 800; color: var(--line-blue); font-variant-numeric: tabular-nums; }
+  .survey-guide .a { color: var(--ink); font-weight: 600; }
+  .survey-note { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--ink-faint); }
+  .survey-note b { color: var(--ink); }
+  .opinions { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: op; }
+  #opinionsB { counter-reset: op 4; }
+  .opinions li {
+    counter-increment: op;
+    display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: start;
+    padding: 11px 12px; background: var(--surface-2);
+    border: 1px solid var(--border-soft); border-radius: 10px;
+  }
+  .opinions li::before {
+    content: counter(op);
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--line-blue); color: #fff;
+    display: grid; place-items: center;
+    font-size: 11.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+  }
+  .opinions p { margin: 0; font-size: 13.3px; line-height: 1.65; color: var(--ink-soft); }
+  .op-copy {
+    border: 1px solid var(--line-blue); background: transparent; color: var(--line-blue);
+    font-family: inherit; font-size: 12px; font-weight: 700;
+    padding: 5px 10px; border-radius: 8px; cursor: pointer; white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .op-copy:active { background: var(--surface-2); }
+  .opinions-more { display: grid; gap: 10px; }
+  .opinions-more[hidden] { display: none; }
+  .survey-close { margin: 4px 2px 0; font-size: 13.5px; font-weight: 700; color: var(--ink); text-align: center; }
 
   /* ============ Truck (성남 희망트럭) ============ */
   .relay-img {
@@ -602,12 +667,59 @@
     </ul>
   </section>
 
-  <!-- RAIL: 2 stations -->
+  <!-- RAIL: 3 stations -->
   <div class="rail">
 
-    <!-- Station 1: 정치인 민원 문자 -->
+    <!-- Station 1: 국민 의견수렴 설문조사 -->
     <section class="station">
       <div class="node">1</div>
+      <div class="st-head">
+        <h3>제5차 국가철도망 구축계획 국민 의견수렴 설문조사</h3>
+        <div class="st-desc">국토교통부 주관 · 11월 13일 오후 3시 마감</div>
+      </div>
+
+      <a class="sign-cta survey-cta" href="https://form.naver.com/response/4pJ5j7jxAXT" target="_blank" rel="noopener">
+        <span class="sign-cta-eyebrow">📝 국토교통부 의견수렴 설문</span>
+        <span class="sign-cta-title">제5차 국가철도망 구축계획 설문 참여하기</span>
+        <span class="sign-cta-go">설문 바로가기 →</span>
+      </a>
+
+      <p class="survey-lead">경기남부광역철도의 국가철도망 반영을 바라는 주민 여러분의 많은 관심과 참여 부탁드립니다!</p>
+
+      <ul class="survey-facts">
+        <li><span class="sk">📅 참여기간</span><span class="sv">11월 8일 ~ 13일 <b>오후 3시까지</b></span></li>
+        <li><span class="sk">☕ 참여 혜택</span><span class="sv">설문 완료자 중 300명 추첨, 커피 기프티콘 증정</span></li>
+      </ul>
+
+      <div class="survey-box">
+        <div class="sb-title">✅ 설문 응답 참고 가이드</div>
+        <ul class="survey-guide">
+          <li><span class="q">7번</span><span class="a">② 수도권 출퇴근 편의 개선</span></li>
+          <li><span class="q">8번</span><span class="a">⑤ 매우 부족하다</span></li>
+          <li><span class="q">9번</span><span class="a">① 개발계획과 함께 철도 추진</span></li>
+          <li><span class="q">10번</span><span class="a">① 철도 투자 적극 확대</span></li>
+          <li><span class="q">11번</span><span class="a">① 수도권 투자 확대</span></li>
+          <li><span class="q">12번</span><span class="a">① 수도권 60%, 비수도권 40%</span></li>
+        </ul>
+      </div>
+
+      <div class="survey-box">
+        <div class="sb-title">✍️ 13번 자유의견 예시</div>
+        <p class="survey-note">13번 의견란에는 표현을 다양하게 해 주세요. 예시를 참고해 <b>각자 다르게 수정</b> 부탁드립니다.</p>
+        <ol class="opinions" id="opinionsA"></ol>
+        <div class="opinions-more" id="opinionsMore" hidden>
+          <p class="survey-note">아래 예시는 국가 산업경쟁력 강화와 광역교통 개선을 동시에 실현할 수 있는 경제성 높은 경남광에 국가 차원의 투자 예산을 확대하라는 논지입니다.</p>
+          <ol class="opinions" id="opinionsB"></ol>
+        </div>
+        <button class="more-btn" id="opinionToggle" type="button" aria-expanded="false" aria-controls="opinionsMore">예시 더 보기 ▾</button>
+      </div>
+
+      <p class="survey-close">🚆 많은 참여 부탁드립니다.</p>
+    </section>
+
+    <!-- Station 2: 정치인 민원 문자 -->
+    <section class="station">
+      <div class="node">2</div>
       <div class="st-head">
         <h3>정치인에게 민원 문자</h3>
         <div class="st-desc">문구를 고르고 정치인을 선택한 뒤 버튼을 누르면 문자앱이 열립니다</div>
@@ -651,9 +763,9 @@
       </a>
     </section>
 
-    <!-- Station 2: 민원 접수 -->
+    <!-- Station 3: 민원 접수 -->
     <section class="station final">
-      <div class="node">2</div>
+      <div class="node">3</div>
       <div class="st-head">
         <h3>민원 접수하기</h3>
         <div class="st-desc">각 부처 민원 페이지로 이동해, 바로 아래 문구를 복사해 제출하세요</div>
@@ -919,6 +1031,55 @@
     });
     signDesc.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleSign(); }
+    });
+  }
+
+  // ===== 국민 의견수렴 설문: 13번 자유의견 예시 =====
+  const OPINIONS_A = [
+    "성남·용인·수원·화성은 반도체 클러스터와 대규모 신도시가 들어서는데 서울로 가는 철도가 턱없이 부족합니다. 철도 예산을 확대하여 경기남부광역철도를 제5차 계획에 꼭 반영해 주세요.",
+    "출퇴근 2시간은 이제 한계입니다. 직주근접과 산업 경쟁력을 위해 경기남부광역철도는 반드시 필요합니다.",
+    "국가철도망 투자예산을 대폭 확대하여 국가 반도체 산업의 핵심 배후지인 경기남부에 꼭 필요한 경기남부광역철도를 제5차 국가철도망 구축계획에 반드시 반영해 주세요.",
+    "경기남부의 교통난 해소와 반도체 산업 경쟁력 강화를 위해 경기남부광역철도를 제5차 국가철도망 구축계획에 반드시 반영하고 충분한 국가예산과 안정적인 재원을 확보하여 경기남부광역철도가 예산 부족으로 지연되지 않도록 해주세요."
+  ];
+  const OPINIONS_B = [
+    "경제성이 높은 경기남부광역철도에 대한 재정 투자를 확대하여 국가 예산의 효율성과 투자 성과를 높여야 합니다.",
+    "경제성 있는 철도사업을 적극 발굴하고 투자 규모를 확대하여 경기남부광역철도와 같은 국가 성장 기반시설을 확충해야 합니다.",
+    "투자 대비 편익이 높은 경기남부광역철도에 충분한 예산을 배정하여 국민 편익과 국가 재정 투자의 효과를 극대화해야 합니다.",
+    "B/C 1.2의 경제성과 미래 산업 성장성을 갖춘 경기남부광역철도는 예산을 아껴야 할 사업이 아니라 적극적으로 투자해야 할 사업입니다.",
+    "반도체·IT·첨단산업이 집중된 경기남부의 경쟁력 강화를 위해 산업 인프라와 함께 경기남부광역철도 투자 예산도 확대해야 합니다.",
+    "제2·3판교테크노밸리 등 국가 핵심 산업거점의 지속적인 성장을 위해 경기남부광역철도에 대한 국가 재정 지원을 확대해야 합니다.",
+    "IT 및 미래 산업의 성장 속도를 교통 인프라가 따라가지 못하는 일이 없도록 경제성이 확인된 경기남부광역철도에 선제적인 철도 투자를 확대해야 합니다.",
+    "국가 산업경쟁력은 기업 유치뿐 아니라 우수 인력의 이동과 접근성 확보에서 시작되므로 경제성 높은 경기남부광역철도에 대한 적극적인 재정 투자가 필요합니다.",
+    "현재의 재정 부담만을 이유로 미래 성장에 필요한 투자를 미뤄서는 안 됩니다. 경제성과 성장 잠재력이 높은 경기남부광역철도에 선제적으로 투자해야 합니다."
+  ];
+  function renderOpinions(listId, items) {
+    const ol = document.getElementById(listId);
+    if (!ol) return;
+    items.forEach((txt) => {
+      const li = document.createElement("li");
+      const p = document.createElement("p");
+      p.textContent = txt;
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "op-copy";
+      btn.textContent = "복사";
+      btn.addEventListener("click", () => copyText(txt, "복사했습니다 · 내 표현으로 바꿔 주세요"));
+      li.append(p, btn);
+      ol.appendChild(li);
+    });
+  }
+  renderOpinions("opinionsA", OPINIONS_A);
+  renderOpinions("opinionsB", OPINIONS_B);
+  const opinionsMore = document.getElementById("opinionsMore");
+  const opinionToggle = document.getElementById("opinionToggle");
+  if (opinionsMore && opinionToggle) {
+    const moreLabel = "예시 더 보기 (" + OPINIONS_B.length + "개) ▾";
+    opinionToggle.textContent = moreLabel;
+    opinionToggle.addEventListener("click", () => {
+      const open = opinionsMore.hidden;
+      opinionsMore.hidden = !open;
+      opinionToggle.setAttribute("aria-expanded", String(open));
+      opinionToggle.textContent = open ? "접기 ▴" : moreLabel;
     });
   }
 
