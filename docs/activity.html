@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#14263f" />
+<title>추진연대 활동 기록 · 경기남부광역철도</title>
+<style>
+  /* 승인된 호스트가 아니면 내용을 보여주지 않는다 (아래 스크립트가 해제) */
+  html.gated body { display: none; }
+  :root {
+    --ground: #0b1320; --surface: #131f30; --surface-2: #182640;
+    --ink: #e9f0fa; --ink-soft: #a2b2c8; --ink-faint: #6d7f97;
+    --signal: #ff5646; --line-blue: #5b93e6; --go: #2fa579; --amber: #f5c14e;
+    --border: #26344b; --border-soft: #1e2b40; --node-ring: #131f30;
+    --shadow: 0 6px 24px rgba(0,0,0,0.4); --shadow-sm: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  :root[data-theme="light"] {
+    --ground: #eef1f6; --surface: #ffffff; --surface-2: #f6f8fb;
+    --ink: #14263f; --ink-soft: #55647c; --ink-faint: #8a97ab;
+    --signal: #e5342a; --line-blue: #2b6fd6; --go: #0f7a52; --amber: #f0b429;
+    --border: #dbe2ec; --border-soft: #e8edf4; --node-ring: #ffffff;
+    --shadow: 0 6px 22px rgba(20,38,63,0.10); --shadow-sm: 0 2px 8px rgba(20,38,63,0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: "Pretendard","Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    line-height: 1.62; letter-spacing: -0.01em;
+    -webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "SF Mono",ui-monospace,"Consolas","Menlo",monospace; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+  .page { max-width: 640px; margin: 0 auto; padding-bottom: 8px; }
+
+  .theme-toggle {
+    position: fixed; top: 14px; right: 14px; z-index: 300;
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+    font-size: 19px; line-height: 1; cursor: pointer; display: grid; place-items: center;
+    box-shadow: var(--shadow); -webkit-tap-highlight-color: transparent;
+  }
+  .back {
+    position: absolute; top: 14px; left: 14px; z-index: 300;
+    height: 42px; padding: 0 15px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+    font-size: 13.5px; font-weight: 700; text-decoration: none;
+    display: inline-flex; align-items: center; box-shadow: var(--shadow);
+  }
+
+  .hero {
+    background: radial-gradient(120% 90% at 85% -10%, rgba(43,111,214,0.28), transparent 60%),
+                linear-gradient(168deg, #16273f 0%, #0e1a2c 100%);
+    color: #eef3fb; padding: 72px 24px 28px;
+  }
+  .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: #ffd45e; }
+  .hero h1 { margin: 8px 0 0; font-size: clamp(24px, 6.6vw, 31px); font-weight: 800; line-height: 1.3; letter-spacing: -0.03em; text-wrap: balance; }
+  .intro { margin-top: 16px; display: grid; gap: 6px; }
+  .intro p { margin: 0; font-size: 12.8px; line-height: 1.6; color: #b7c7dd; }
+  .intro b { color: #fff; }
+
+  .sec { margin: 26px 16px 0; }
+  .sec-head { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
+  .num {
+    flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--surface); border: 4px solid var(--line-blue);
+    box-shadow: 0 0 0 4px var(--node-ring);
+    display: grid; place-items: center; font-size: 12.5px; font-weight: 800;
+  }
+  .sec-head h2 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.35; }
+
+  .tl { list-style: none; margin: 0; padding: 0 0 0 15px; position: relative; display: grid; gap: 11px; }
+  .tl::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 3px; background: var(--line-blue); opacity: 0.55; }
+  .ev {
+    position: relative; display: grid; grid-template-columns: 62px 1fr; gap: 12px; align-items: start;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 13px; padding: 13px 14px; box-shadow: var(--shadow-sm);
+  }
+  .ev::before {
+    content: ""; position: absolute; left: -19px; top: 18px;
+    width: 11px; height: 11px; border-radius: 50%; background: var(--line-blue); box-shadow: 0 0 0 3px var(--ground);
+  }
+  .when { display: flex; flex-direction: column; gap: 1px; }
+  .when .d { font-size: 13px; font-weight: 800; color: var(--line-blue); }
+  .when .dow { font-size: 11px; color: var(--ink-faint); font-weight: 600; }
+  .what { font-size: 13.6px; line-height: 1.7; color: var(--ink-soft); min-width: 0; overflow-wrap: anywhere; }
+  .what b { color: var(--ink); }
+
+  @media (max-width: 430px) {
+    .ev { grid-template-columns: 1fr; gap: 4px; }
+    .when { flex-direction: row; align-items: baseline; gap: 7px; }
+  }
+  .bl { margin: 0 0 6px; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .bl li {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 11px 14px; font-size: 13.6px; line-height: 1.7; color: var(--ink-soft); box-shadow: var(--shadow-sm);
+  }
+  .bl li b { color: var(--ink); }
+  .bl ul { list-style: none; margin: 8px 0 0; padding: 8px 0 0 12px; border-top: 1px dashed var(--border); display: grid; gap: 4px; }
+  .bl ul li { background: none; border: 0; box-shadow: none; padding: 0; font-size: 13px; }
+  .bl ul li::before { content: "└ "; color: var(--ink-faint); }
+  .sec p { margin: 0 0 10px; font-size: 13.6px; color: var(--ink-soft); }
+  .sub { margin: 20px 2px 9px; font-size: 14px; font-weight: 800; color: var(--amber); }
+  :root[data-theme="light"] .sub { color: #b8860b; }
+  .sec.summary .sec-head .num { border-color: var(--signal); }
+  .sec.summary .sub:first-of-type { margin-top: 0; }
+
+  footer { margin: 34px 16px 28px; text-align: center; font-size: 12.5px; color: var(--ink-faint); line-height: 1.7; }
+</style>
+<script>
+  /* 이 페이지는 gyeonggi-southern-metro-2.pages.dev 에서만 공개한다.
+     다른 도메인(예: vercel.app)에서 열리면 메인으로 돌려보낸다. */
+  (function () {
+    var h = location.hostname;
+    var ok = h === "gyeonggi-southern-metro-2.pages.dev" ||
+             /\.gyeonggi-southern-metro-2\.pages\.dev$/.test(h) ||
+             h === "localhost" || h === "127.0.0.1" || h === "" ;
+    if (!ok) { document.documentElement.classList.add("gated"); location.replace("./"); }
+  })();
+</script>
+</head>
+<body>
+<a class="back" href="./">← 메인으로</a>
+<button id="themeToggle" class="theme-toggle" type="button" aria-label="라이트 모드로 전환">☀️</button>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">ACTIVITY LOG</div>
+    <h1>성남시민 경기남부광역철도 추진연대 활동 정리</h1>
+    <div class="intro"><p>기간: <b>2026-07-23 ~ 2026-11-13</b></p></div>
+  </header>
+
+<section class="sec "><div class="sec-head"><span class="num">0</span><h2>7월 이전 — 결성과 초기 활동 (~7/22)</h2></div>
+<ul class="bl">
+<li><b>7월 초</b>: 성남시민 경남광 추진연대 결성. 동별 대표단(대장·운중·고등·금토·세곡 등)을 구성.</li>
+<li><b>6월 이후</b>: 민선9기 경기도 인수위 120대 정책과제에서 경남광이 빠진 것을 확인하고 항의. "취임 100일 뒤 백서로 다시 정리한다"는 답을 받음.</li>
+<li><b>경기도 제1호 청원</b>을 진행하고 참여를 독려함.</li>
+<li><b>판교역 앞 침묵 피켓시위</b>를 진행함(7/28 청원 답변 영상에 등장).</li>
+<li><b>7/19</b>: 방 운영 원칙 추가. 어떤 단체와도 연관되지 않은 독자 조직으로 운영하고, 정치인의 발언을 금지함.</li>
+</ul>
+</section>
+<section class="sec "><div class="sec-head"><span class="num">1</span><h2>7월 — 조직 정비, 정치권 접촉, 온라인 행동 시작</h2></div>
+<ol class="tl">
+<li class="ev"><div class="when"><span class="d mono">7/23</span><span class="dow">목</span></div><div class="what"><b>경기도의회를 방문해 남종섭 의장에게 촉구 건의안 전달.</b> 주민이 재능기부로 만든 통합 링크 사이트(<span class="mono">gyeonggi-southern-metro.vercel.app</span>)를 공지함. 경기도 청원, 민원 문자, 민원 접수, 카페, 단톡방 입장을 한곳에 모음.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/24</span><span class="dow">금</span></div><div class="what">김태년 의원 등의 블로그와 기사에 <b>댓글·좋아요 인증 릴레이</b> 시작(이후 일상 활동이 됨). 남종섭 의장 비서관을 통해 감사 인사를 전하고, 도의회 안건 상정까지 계속 연락하기로 함. <b>김은혜 의원 사무국장과 통화</b>: 경남광 필요성을 인지하고 있으며 연석회의 예정이라는 답을 받음. 촉구 건의안을 먼저 전달하기로 함. 국토부와 기획예산처의 입장 공유: 국토부는 예산이 증액되면 승인한다는 입장이고, 기획예산처의 증액이 관건. <b>추미애 도지사 보좌관 접촉</b>: 제1호 청원에 도지사가 직접 답변할 예정이라는 긍정적 답을 받음.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/25</span><span class="dow">토</span></div><div class="what">경기도 청원 막바지 독려(남은 인원 243명 → 0명, 1만 명 달성). 4개시 연합회와는 합류하지 않고 별도로 활동하되 소통은 유지하기로 함. 도지사 청원 답변은 8월 초로 예상. 이후 경기도에는 추가 청원 대신 시민 면담을 요청하는 방향을 정함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/26</span><span class="dow">일</span></div><div class="what">수원·용인시장 블로그에 댓글 독려. <b>정명근 화성시장에게 직접 연락</b>해 기사에 감사 인사를 전하고 블로그 포스팅을 요청함. <b>📣두번째 온라인 행동</b>: 기획예산처와 국토교통부에 민원을 넣을 수 있도록 링크 사이트를 개편함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/27</span><span class="dow">월</span></div><div class="what"><b>📣정책 제안서 「경기남부광역철도 국가전략 인프라화 방안」 발송.</b> 추진연대 명의로 청와대(비서실·정책실), 국토교통부, 기획예산처, 재정경제부 등 <b>9곳</b>에 빠른등기로 보냄. 사업 배경, 타임라인, 반영 필요성, 시민 활동 내역을 담음. 도지사 보좌관의 답변을 공유함. 김태년·염태영·김준혁 의원 SNS에 댓글을 독려함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/28</span><span class="dow">화</span></div><div class="what">등기 9곳 모두 배송 완료. 국토부와 통화해 우편으로 회신받기로 함. <b>📣세번째 온라인 행동</b>: 부승찬 의원(용인병)이 주최한 서명운동을 링크 사이트에 추가함. <b>경기도 제1호 청원에 도지사가 답변</b>(영상 공유). 관련 의원 간담회 추진 시작.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/29</span><span class="dow">수</span></div><div class="what">서명운동 재공지. 신규 참여자를 맞이하고 안내함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/30</span><span class="dow">목</span></div><div class="what">정책 제안서를 방에 공개. <b>📣시민 희망 릴레이</b>(포스트잇 인증사진) 시작. <b>📣희망트럭(세종) 모금</b> 시작: 목표 160만 원을 <b>약 3시간 만에 초과 달성</b>. 사전기사 게재(뉴스피플, "8월 5~6일 세종서 희망트럭"). 기자들에게 촉구 건의안과 제안서를 첨부해 사전기사 요청 메일을 보냄. 영상 편집자 섭외.</div></li>
+<li class="ev"><div class="when"><span class="d mono">7/31</span><span class="dow">금</span></div><div class="what">모금액 200만 원 달성. 초과분은 이후 집회를 대비해 보관하기로 함. 희망트럭 송출 영상 1차본 공개. 링크 사이트에 희망 릴레이 추가.</div></li>
+</ol>
+</section>
+<section class="sec "><div class="sec-head"><span class="num">2</span><h2>8월 — 현장 행동과 정치권 면담 집중</h2></div>
+<ol class="tl">
+<li class="ev"><div class="when"><span class="d mono">8/2 ~ 8/3</span></div><div class="what">희망 릴레이 인증사진 마감 독려(약 30장 접수). CF 제작 경력이 있는 주민 PD가 재능기부로 영상 스토리를 맡음. <b>📣다섯번째 행동 예고</b>: 김태년 의원 간담회.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/4</span><span class="dow">화</span></div><div class="what">희망트럭 송출 영상 컨셉 공개.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/5</span><span class="dow">수</span></div><div class="what"><b>📣희망트럭 세종 1일차.</b> 국토교통부와 기획예산처 앞에서 운영. 대표, 운중동 대표, 운중동 해피님이 동행하고 <b>김진명 도의원도 세종까지 동행</b>함. 4개시 의원과의 자리를 마련해 주기로 함. 국민신문고 답변 수령("투자규모 확대 노력 중"). 후속기사 게재.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/6</span><span class="dow">목</span></div><div class="what"><b>희망트럭 2일차</b>(기획예산처 → 국토부, 업체가 원격으로 운영). <b>국토부 담당 정보관과 통화</b>: 경남광 노선과 4개시의 염원을 설명하고 명함을 교환함. 경기도 재정위기가 경남광에 미치는 영향 공유: 국비 70%라 영향 없다는 도 철도팀 의견.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/7</span><span class="dow">금</span></div><div class="what"><b>📣김태년 의원 간담회(약 1시간).</b> 참석: 강상태 성남시의회 의장, 김진명·문승호·최만식 도의원, 이군수·장일남·박기범 시의원, 대표단과 주민. 120대 과제 누락에 대한 인정과 경과 설명을 들음. "B/C 1.2 확보 사업, 5차 반영에 최선", "걱정하지 말라"는 답을 받음. 정책 제안서와 시그니처 선물(캐리커처 액자)을 전달함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/8</span><span class="dow">토</span></div><div class="what">최만식 도의원 블로그 독려.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/10 ~ 8/11</span></div><div class="what">남은 기간의 행동 아이디어를 공모함. 김태년 의원에게 "부분(구간) 선개통"을 건의한 사실을 공유함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/12</span><span class="dow">수</span></div><div class="what"><b>김종환 시의원 요청으로 국회 행사에 대표로 참석.</b> 성남시장 면담 날짜를 비서실과 조율 시작.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/13</span><span class="dow">목</span></div><div class="what"><b>국회 소통관 기자회견 참석</b>(부승찬·염태영·김준혁·권칠승 의원). 김진명 도의원 주선으로 이광재 예결위원장 면담이 잡혔으나 의원 일정으로 8/29로 연기됨. 서명 1만 명을 넘기면 국토부 장관 면담에 추진연대도 동행하기로 함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/14</span><span class="dow">금</span></div><div class="what"><b>📣여덟번째 행동: 희망트럭 성남편 모금</b>(목표 60만 원 → 당일 마감). 지역구 의원들에게 행사 참여 공문을 발송함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/16</span><span class="dow">일</span></div><div class="what">판교역 집회 공지. <b>분당경찰서에 집회신고 완료.</b></div></li>
+<li class="ev"><div class="when"><span class="d mono">8/17</span></div><div class="what">성남편 총 모금액 145.5만 원. 참석 투표 진행.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/19</span><span class="dow">수</span></div><div class="what"><b>📣희망트럭 성남편과 판교역 집회.</b> 트럭이 성남시청 → 야탑 → 판교·테크노밸리 → 운중동(산운13단지 알뜰장) → 대장동 → 금토·고등동을 순회함. 18시 판교역 3번 출구에서 시민, 대표단, 지역구 의원이 함께 촉구 집회를 열고 발언함(의자 50석).</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/20</span><span class="dow">목</span></div><div class="what">공청회 전에 계획된 시민행동을 마무리. 사진 이벤트 당첨자 발표. <b>경기도 인수위 백서(8/20 발간)를 확인.</b></div></li>
+<li class="ev"><div class="when"><span class="d mono">8/21</span><span class="dow">금</span></div><div class="what"><b>🎉 경기도 민선9기 인수위 백서에 경남광 포함 최종 확인.</b> 120대 과제 누락 → 청원, 김태년 인수위원장 면담 등을 거친 성과임.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/24</span><span class="dow">월</span></div><div class="what"><b>시민 모금 최종 정산보고서 공개</b>: 총 3,055,000원 / 지출 2,908,960원 / 잔액 146,040원. 개인 현금 후원은 모두 돌려보냄. <b>성남시의회에 경남광 촉구 건의안 상정.</b></div></li>
+<li class="ev"><div class="when"><span class="d mono">8/25</span><span class="dow">화</span></div><div class="what">김진명 도의원의 도정질의 예고를 전달. 경기도 공식 블로그의 경남광 포스팅 댓글을 독려함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/26</span><span class="dow">수</span></div><div class="what">공청회 지연 사유를 확인함(예산 협의 미완료). 대표단은 "증액 후 공청회가 유리"하다는 입장. 시장 면담은 일정 조율이 안 됨. <b>성남시청 광역철도팀장과 통화.</b></div></li>
+<li class="ev"><div class="when"><span class="d mono">8/27</span><span class="dow">목</span></div><div class="what">경기도의회 양당 교섭단체 대표의원 관련 기사 공유.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/28</span><span class="dow">금</span></div><div class="what">이광재 의원 면담 예고. 금토지구 교통 문제를 함께 전달하기로 함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/29</span><span class="dow">토</span></div><div class="what"><b>📣아홉번째 행동: 이광재 국회 예결위원장 면담</b>(하남 사무실, 김진명 도의원 주선). "경남광 긍정적"이라는 답과 추석 전 분당 간담회 약속을 받음. 기사 게재.</div></li>
+<li class="ev"><div class="when"><span class="d mono">8/30 ~ 8/31</span></div><div class="what">이광재 의원 전언 공유: 공청회 9~10월, 확정고시 11월 예상. 추가 기사 게재.</div></li>
+</ol>
+</section>
+<section class="sec "><div class="sec-head"><span class="num">3</span><h2>9월 — 정보 확인·전달, 허위정보 대응</h2></div>
+<ol class="tl">
+<li class="ev"><div class="when"><span class="d mono">9/1</span><span class="dow">화</span></div><div class="what">김진명 도의원의 9/3 도의회 본회의 도정질의(5차 반영 촉구)를 공지. 국가철도망 예산 구조를 설명함: 현재 40조 수준, 최소 60조 이상 증액이 필요하다는 논리.</div></li>
+<li class="ev"><div class="when"><span class="d mono">9/4</span><span class="dow">금</span></div><div class="what">국토부 장관 후보자 발언 공유(9~10월 공청회, 11월 발표). 블라인드에 퍼진 "경남광 공약 누락" 기사를 김진명 의원에게 직접 확인해 사실관계를 설명함. 민선9기 공약은 내년 1월 확정 예정.</div></li>
+<li class="ev"><div class="when"><span class="d mono">9/10</span><span class="dow">목</span></div><div class="what">네이버 카페에 올라온 대표단 관련 허위 게시글에 공식 대응: 역 위치에 대해 발언한 적이 없다고 해명함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">9/16</span><span class="dow">수</span></div><div class="what">국토부에 공청회 일정을 확인함(9월로 정한 적 없음, 9~10월 예정).</div></li>
+<li class="ev"><div class="when"><span class="d mono">9/21</span><span class="dow">월</span></div><div class="what">김진명 도의원이 민주당 최고위원 간담회에서 경남광을 요청해 김민석 당대표, 한병도 원내대표, 추미애 지사에게서 긍정적 답을 받았다는 소식을 공유함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">9/22</span><span class="dow">화</span></div><div class="what">이광재 의원 분당 간담회는 예산 회의 일정으로 추석 이후 재조율하기로 함.</div></li>
+</ol>
+</section>
+<section class="sec "><div class="sec-head"><span class="num">4</span><h2>10월 — 예산 실링 국면, 단합 유지</h2></div>
+<ol class="tl">
+<li class="ev"><div class="when"><span class="d mono">10/14</span><span class="dow">수</span></div><div class="what">부승찬 의원 인스타그램의 역 위치 표기 게시글에 대응함. 의원실에 게시 경위 확인을 요청하고 김태년 의원 보좌관에게 성남시민의 우려를 전달함 → 게시글 삭제.</div></li>
+<li class="ev"><div class="when"><span class="d mono">10/19</span><span class="dow">월</span></div><div class="what">예산 상황 공유: 4차 약 42조, 경남광 사업비 약 5.275조. 국토부는 100조, 기획예산처는 80조 선에서 논의 중.</div></li>
+<li class="ev"><div class="when"><span class="d mono">10/20</span><span class="dow">화</span></div><div class="what">운영진은 매일 전화하고 찾아가며 확인하는 중이라고 밝힘. "발표 촉구" 단체행동은 득실을 따져 보류함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">10/23</span><span class="dow">금</span></div><div class="what">염태영 의원이 국정감사 질의 슬라이드에 <b>추진연대가 만든 캐리커처를 사용</b>함. 김진명 도의원 전언 공유: 예산 실링 협의 중이며, 협의 후 공청회까지 약 3주 소요.</div></li>
+<li class="ev"><div class="when"><span class="d mono">10/28</span><span class="dow">수</span></div><div class="what">4차 국가철도망 신규사업 규모(58.8조)를 국토부 원문으로 확인해 공유함.</div></li>
+</ol>
+</section>
+<section class="sec "><div class="sec-head"><span class="num">5</span><h2>11월 — 국토부 의견수렴 총력전</h2></div>
+<ol class="tl">
+<li class="ev"><div class="when"><span class="d mono">11/4</span><span class="dow">수</span></div><div class="what">김태년 의원 보좌관이 보낸 예산 논의 영상 공유.</div></li>
+<li class="ev"><div class="when"><span class="d mono">11/8</span><span class="dow">일</span></div><div class="what"><b>📣국토부 「제5차 국가철도망 구축계획 의견수렴 설문」 공지</b>(11/8 ~ 11/13 15시). 문항별 응답 가이드와 자유의견 예시를 배포하고 링크 사이트에 추가함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">11/10</span><span class="dow">화</span></div><div class="what"><b>성남시 광역철도팀장과 통화해 시 차원의 설문 독려를 요청</b>함(장일남 시의원도 건의) → <b>당일 성남시청 홈페이지 메인에 게시.</b></div></li>
+<li class="ev"><div class="when"><span class="d mono">11/11</span><span class="dow">수</span></div><div class="what">자유의견 예시를 경제성·투자확대 논지로 다양화함. 김태년 의원실(강경훈 보좌관)의 의견서 일부 공유. 수정구 시의원들의 설문 독려 소식 공유.</div></li>
+<li class="ev"><div class="when"><span class="d mono">11/12</span><span class="dow">목</span></div><div class="what">국토부 의견수렴 행사 참석을 공지하고 동행 시민을 모집함. 의견수렴, 공청회, 확정고시의 차이를 설명함.</div></li>
+<li class="ev"><div class="when"><span class="d mono">11/13</span><span class="dow">금</span></div><div class="what"><b>📣국토부 의견수렴 행사 현장 참석.</b> 대표, 운중동 대표, 4개시 성남대표 해피님에 대장동 주민 3명과 고등동 주민 1명이 함께함. 새벽 출발로 전국 1등 도착, 경기도 주민 중 맨 앞자리를 확보함. 시민들은 유튜브 생중계 댓글로 동시 참여함(경기 응답률 53.6%). 김태년·안철수 의원 축사와 김태년 의원 감사 서한을 공유함.</div></li>
+</ol>
+</section>
+<section class="sec summary"><div class="sec-head"><span class="num">6</span><h2>활동 유형별 요약</h2></div>
+<h4 class="sub">정치권과 기관 접촉</h4>
+<ul class="bl">
+<li>면담·간담회: 남종섭 도의회 의장(7/23), 김태년 의원 간담회(8/7, 시·도의원 8명 참석), 이광재 예결위원장(8/29)</li>
+<li>통화·소통: 김은혜 의원실, 추미애 도지사 보좌관, 정명근 화성시장, 국토부(정보관 포함), 성남시 광역철도팀, 김태년 의원 보좌관(상시)</li>
+<li>국회 행사 참석(8/12), 국회 기자회견 참석(8/13), 국토부 의견수렴 행사 참석(11/13)</li>
+</ul>
+<h4 class="sub">문서 작업</h4>
+<ul class="bl">
+<li>경기도의회 촉구 건의안(7/23), 정책 제안서 「국가전략 인프라화 방안」을 9개 기관에 발송(7/27), 기자단 보도자료 메일(7/30), 지역구 의원 공문(8/14·16)</li>
+</ul>
+<h4 class="sub">시민 행동</h4>
+<ul class="bl">
+<li>1차 경기도 제1호 청원 / 2차 기획예산처·국토부 민원 / 3차 서명운동과 희망 릴레이 / 4차 희망트럭 세종(8/5~6) / 5차 김태년 간담회 / 8차 희망트럭 성남편과 판교역 집회(8/19) / 9차 이광재 면담 / 국토부 설문 총동원(11/8~13)</li>
+<li>기사, 블로그, SNS 댓글·좋아요 릴레이(상시)</li>
+</ul>
+<h4 class="sub">성과</h4>
+<ul class="bl">
+<li>경기도 제1호 청원 도지사 답변(7/28)</li>
+<li>경기도 인수위 백서에 경남광 포함(8/21)</li>
+<li>성남시의회에 촉구 건의안 상정(8/24)</li>
+<li>성남시청 홈페이지에 국토부 설문 게시(11/10)</li>
+<li>모금 305.5만 원과 정산 공개(8/24)</li>
+</ul>
+</section>
+
+  <footer>
+    성남시민 경기남부광역철도 추진연대의 자발적 활동 기록입니다.<br>
+    함께 힘을 모아주셔서 감사합니다. 🚆
+  </footer>
+</div>
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("themeToggle"), saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    function apply(t) {
+      root.setAttribute("data-theme", t);
+      btn.textContent = t === "dark" ? "☀️" : "🌙";
+      btn.setAttribute("aria-label", t === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
+    }
+    apply(saved === "light" ? "light" : "dark");
+    btn.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      apply(next);
+    });
+  })();
+</script>
+</body>
+</html>
