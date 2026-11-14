@@ -108,12 +108,13 @@
   footer { margin: 34px 16px 28px; text-align: center; font-size: 12.5px; color: var(--ink-faint); line-height: 1.7; }
 </style>
 <script>
-  /* 이 페이지는 gyeonggi-southern-metro-2.pages.dev 에서만 공개한다.
-     다른 도메인(예: vercel.app)에서 열리면 메인으로 돌려보낸다. */
+  /* 공식 배포 도메인(pages.dev, vercel.app)에서만 공개한다.
+     그 밖의 도메인에서 열리면 메인으로 돌려보낸다. */
   (function () {
     var h = location.hostname;
     var ok = h === "gyeonggi-southern-metro-2.pages.dev" ||
              /\.gyeonggi-southern-metro-2\.pages\.dev$/.test(h) ||
+             h === "gyeonggi-southern-metro.vercel.app" ||
              h === "localhost" || h === "127.0.0.1" || h === "" ;
     if (!ok) { document.documentElement.classList.add("gated"); location.replace("./"); }
   })();
